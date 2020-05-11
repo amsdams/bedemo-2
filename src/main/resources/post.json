@@ -1,0 +1,16 @@
+{
+  "adres": "string",
+  "deeltijdPercentage": 100,
+  "einddatumDienst": "2048-01-01",
+  "email": "string",
+  "geboortedatum": "1980-01-01",
+  "huidigeWaardeBeleggingen": 110,
+  "jaarlijksRendementBeleggingen": 3,
+  "naam": "string",
+  "premiePercentage": 1.6,
+  "rekening": "string",
+  "startdatumDienst": "2005-01-01",
+  "voltijdFranchise": 1500,
+  "voltijdsalaris": 40000,
+  "woonplaats": "string"
+}
