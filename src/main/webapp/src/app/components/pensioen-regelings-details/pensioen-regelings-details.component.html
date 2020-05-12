@@ -1,0 +1,78 @@
+<!-- 
+id?: number;
+    jaarlijksRendementBeleggingen?: number;
+    naam?: string;
+    premiePercentage?: number;
+    voltijdFranchise?: number;
+     -->
+<div class="card my-5">
+	<div class="card-body">
+		<form (ngSubmit)="onSubmit()" #pensioenRegelingForm="ngForm">
+			<!-- naam -->
+			<div class="form-group">
+				<label for="naam">Naam pensioenRegeling</label> <input type="text"
+					[(ngModel)]="pensioenRegeling.naam" class="form-control" id="naam"
+					name="naam" placeholder="Invoer Naam pensioenRegeling" required
+					#naam="ngModel">
+			</div>
+
+
+			<div *ngIf="naam.invalid && (naam.dirty || naam.touched)"
+				class="alert alert-danger">Naam pensioenRegeling is verplicht</div>
+			<!-- naam -->
+			<!-- jaarlijksRendementBeleggingen -->
+			<div class="form-group">
+				<label for="jaarlijksRendementBeleggingen">JaarlijksRendementBeleggingen
+					pensioenRegeling</label> <input type="number" min="0" max="100"
+					[(ngModel)]="pensioenRegeling.jaarlijksRendementBeleggingen"
+					class="form-control" id="jaarlijksRendementBeleggingen"
+					name="jaarlijksRendementBeleggingen"
+					placeholder="Invoer JaarlijksRendementBeleggingen pensioenRegeling" required
+					#jaarlijksRendementBeleggingen="ngModel">
+			</div>
+
+			<div
+				*ngIf="jaarlijksRendementBeleggingen.invalid && (jaarlijksRendementBeleggingen.dirty || jaarlijksRendementBeleggingen.touched)"
+				class="alert alert-danger">JaarlijksRendementBeleggingen pensioenRegeling is verplicht</div>
+			<!-- jaarlijksRendementBeleggingen -->
+
+			<!-- premiePercentage -->
+
+			<div class="form-group">
+				<label for="premiePercentage">PremiePercentage
+					pensioenRegeling</label> <input type="number" min="0" max="100"
+					[(ngModel)]="pensioenRegeling.premiePercentage"
+					class="form-control" id="premiePercentage" name="premiePercentage"
+					placeholder="Invoer PremiePercentage pensioenRegeling" required
+					#premiePercentage="ngModel">
+			</div>
+
+			<div
+				*ngIf="premiePercentage.invalid && (premiePercentage.dirty || premiePercentage.touched)"
+				class="alert alert-danger">PremiePercentage pensioenRegeling is
+				verplicht</div>
+			<!-- premiePercentage -->
+
+			<!-- voltijdFranchise -->
+
+			<div class="form-group">
+				<label for="voltijdFranchise">VoltijdFranchise
+					pensioenRegeling</label> <input type="number"
+					[(ngModel)]="pensioenRegeling.voltijdFranchise"
+					class="form-control" id="voltijdFranchise" name="voltijdFranchise"
+					placeholder="Invoer VoltijdFranchise pensioenRegeling" required
+					#voltijdFranchise="ngModel">
+			</div>
+
+			<div
+				*ngIf="voltijdFranchise.invalid && (voltijdFranchise.dirty || voltijdFranchise.touched)"
+				class="alert alert-danger">VoltijdFranchise pensioenRegeling
+				is verplicht</div>
+			<!-- voltijdFranchise -->
+
+
+			<button type="submit" [disabled]="!pensioenRegelingForm.form.valid"
+				class="btn btn-info">Submit</button>
+		</form>
+	</div>
+</div>

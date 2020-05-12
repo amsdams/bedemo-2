@@ -1,0 +1,30 @@
+<div class="card my-5">
+	<div class="card-body">
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Naam</th>
+					<th scope="col">Email</th>
+					<th scope="col">PensioenRegelingNaam</th>
+					<th scope="col">JaarlijksePremieStortingResultaat</th>
+					<th scope="col">VerwachteWaardePensioenResultaat</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let deelnemer of deelnemers">
+					<td><a routerLink="{{deelnemer.id}}" class="btn btn-info">{{
+							deelnemer.id }}</a></td>
+					<td>{{ deelnemer.naam }}</td>
+					<td><a href="mailto:{{ deelnemer.email }}">{{
+							deelnemer.email }}</a></td>
+
+					<td>{{ deelnemer.pensioenRegelingNaam }}</td>
+					<td>{{ deelnemer.jaarlijksePremieStortingResultaat }}</td>
+					<td>{{ deelnemer.verwachteWaardePensioenResultaat }}</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,3 +1,0 @@
-insert into deelnemer (    created_at,   einddatum_dienst, geboortedatum,  jaarlijks_rendement_beleggingen, naam,    premie_percentage,  deeltijd_percentage, rekening, startdatum_dienst,  updated_at, voltijd_franchise, voltijdsalaris, adres, woonplaats, email, huidige_waarde_beleggingen) values 
-  ('2020-01-01 22:06:44', '2020-01-01', '2020-01-01', 0,'name1', 0, 100,'rekening1' , '2020-01-01', '2020-01-01 22:06:44', 0, 0, 'adres', 'woonplaats', 'email@email.com', 100);
-  

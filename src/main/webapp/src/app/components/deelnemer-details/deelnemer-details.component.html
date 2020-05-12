@@ -1,0 +1,211 @@
+<div class="card my-5">
+	<div class="card-body">
+		<form (ngSubmit)="onSubmit()" #deelnemerForm="ngForm">
+			<!-- naam -->
+			<div class="form-group">
+				<label for="naam">Naam deelnemer</label> <input type="text"
+					[(ngModel)]="deelnemer.naam" class="form-control" id="naam"
+					name="naam" placeholder="Invoer Naam deelnemer" required
+					#naam="ngModel">
+			</div>
+
+
+			<div *ngIf="naam.invalid && (naam.dirty || naam.touched)"
+				class="alert alert-danger">Naam deelnemer is verplicht</div>
+			<!-- naam -->
+			<!-- adres -->
+			<div class="form-group">
+				<label for="adres">Adres deelnemer</label> <input type="text"
+					[(ngModel)]="deelnemer.adres" class="form-control" id="adres"
+					name="adres" placeholder="Invoer Adres deelnemer" required
+					#adres="ngModel">
+			</div>
+
+			<div *ngIf="adres.invalid && (adres.dirty || adres.touched)"
+				class="alert alert-danger">Adres deelnemer is verplicht</div>
+			<!-- adres -->
+			<!-- woonplaats -->
+
+			<div class="form-group">
+				<label for="woonplaats">Woonplaats deelnemer</label> <input
+					type="text" [(ngModel)]="deelnemer.woonplaats" class="form-control"
+					id="woonplaats" name="woonplaats"
+					placeholder="Invoer Woonplaats deelnemer" required
+					#woonplaats="ngModel">
+			</div>
+
+			<div
+				*ngIf="woonplaats.invalid && (woonplaats.dirty || woonplaats.touched)"
+				class="alert alert-danger">Woonplaats deelnemer is verplicht</div>
+			<!-- woonplaats -->
+
+			<!-- geboortedatum -->
+
+			<div class="form-group">
+				<label for="geboortedatum">Geboortedatum deelnemer</label> <input
+					type="date" [(ngModel)]="deelnemer.geboortedatum"
+					class="form-control" id="geboortedatum" name="geboortedatum"
+					placeholder="Invoer Geboortedatum deelnemer" required
+					#geboortedatum="ngModel">
+			</div>
+
+			<div
+				*ngIf="geboortedatum.invalid && (geboortedatum.dirty || geboortedatum.touched)"
+				class="alert alert-danger">Geboortedatum deelnemer is
+				verplicht</div>
+			<!-- geboortedatum -->
+
+			<!-- startdatumDienst -->
+
+			<div class="form-group">
+				<label for="startdatumDienst">StartdatumDienst deelnemer</label> <input
+					type="date" [(ngModel)]="deelnemer.startdatumDienst"
+					class="form-control" id="startdatumDienst" name="startdatumDienst"
+					placeholder="Invoer StartdatumDienst deelnemer" required
+					#startdatumDienst="ngModel">
+			</div>
+
+			<div
+				*ngIf="startdatumDienst.invalid && (startdatumDienst.dirty || startdatumDienst.touched)"
+				class="alert alert-danger">StartdatumDienst deelnemer is
+				verplicht</div>
+			<!-- startdatumDienst -->
+
+
+			<!-- einddatumDienst -->
+
+			<div class="form-group">
+				<label for="einddatumDienst">EinddatumDienst deelnemer</label> <input
+					type="date" [(ngModel)]="deelnemer.einddatumDienst"
+					class="form-control" id="einddatumDienst" name="einddatumDienst"
+					placeholder="Invoer EinddatumDienst deelnemer" required
+					#einddatumDienst="ngModel">
+			</div>
+
+			<div
+				*ngIf="einddatumDienst.invalid && (einddatumDienst.dirty || einddatumDienst.touched)"
+				class="alert alert-danger">EinddatumDienst deelnemer is
+				verplicht</div>
+			<!-- einddatumDienst -->
+
+			<!-- deeltijdPercentage -->
+
+			<div class="form-group">
+				<label for="deeltijdPercentage">DeeltijdPercentage deelnemer</label>
+				<input type="number" min="0" max="100"
+					[(ngModel)]="deelnemer.deeltijdPercentage" class="form-control"
+					id="deeltijdPercentage" name="deeltijdPercentage"
+					placeholder="Invoer DeeltijdPercentage deelnemer" required
+					#deeltijdPercentage="ngModel">
+			</div>
+
+			<div
+				*ngIf="deeltijdPercentage.invalid && (deeltijdPercentage.dirty || deeltijdPercentage.touched)"
+				class="alert alert-danger">DeeltijdPercentage deelnemer is
+				verplicht</div>
+			<!-- deeltijdPercentage -->
+
+			<!-- voltijdsalaris -->
+
+			<div class="form-group">
+				<label for="voltijdsalaris">Voltijdsalaris deelnemer</label> <input
+					type="number" [(ngModel)]="deelnemer.voltijdsalaris"
+					class="form-control" id="voltijdsalaris" name="voltijdsalaris"
+					placeholder="Invoer Voltijdsalaris deelnemer" required
+					#voltijdsalaris="ngModel">
+			</div>
+
+			<div
+				*ngIf="voltijdsalaris.invalid && (voltijdsalaris.dirty || voltijdsalaris.touched)"
+				class="alert alert-danger">Voltijdsalaris deelnemer is
+				verplicht</div>
+			<!-- voltijdsalaris -->
+
+			<!-- rekening -->
+
+			<div class="form-group">
+				<label for="rekening">Rekening deelnemer</label> <input type="text"
+					[(ngModel)]="deelnemer.rekening" class="form-control" id="rekening"
+					name="rekening" placeholder="Invoer Rekening deelnemer" required
+					#rekening="ngModel">
+			</div>
+
+			<div *ngIf="rekening.invalid && (rekening.dirty || rekening.touched)"
+				class="alert alert-danger">Rekening deelnemer is verplicht</div>
+			<!-- rekening -->
+
+			<!-- huidigeWaardeBeleggingen -->
+
+			<div class="form-group">
+				<label for="huidigeWaardeBeleggingen">HuidigeWaardeBeleggingen
+					deelnemer</label> <input type="number"
+					[(ngModel)]="deelnemer.huidigeWaardeBeleggingen"
+					class="form-control" id="huidigeWaardeBeleggingen"
+					name="huidigeWaardeBeleggingen"
+					placeholder="Invoer HuidigeWaardeBeleggingen deelnemer" required
+					#huidigeWaardeBeleggingen="ngModel">
+			</div>
+
+			<div
+				*ngIf="huidigeWaardeBeleggingen.invalid && (huidigeWaardeBeleggingen.dirty || huidigeWaardeBeleggingen.touched)"
+				class="alert alert-danger">HuidigeWaardeBeleggingen deelnemer
+				is verplicht</div>
+			<!-- huidigeWaardeBeleggingen -->
+
+			<!-- pensioenRegelingNaam -->
+
+			<div class="form-group">
+				<label for="pensioenRegelingNaam">PensioenRegelingNaam
+					deelnemer</label> <input type="text"
+					[(ngModel)]="deelnemer.pensioenRegelingNaam" class="form-control"
+					id="pensioenRegelingNaam" name="pensioenRegelingNaam"
+					placeholder="Invoer PensioenRegelingNaam deelnemer" required
+					#pensioenRegelingNaam="ngModel">
+			</div>
+
+			<div
+				*ngIf="pensioenRegelingNaam.invalid && (pensioenRegelingNaam.dirty || pensioenRegelingNaam.touched)"
+				class="alert alert-danger">PensioenRegelingNaam deelnemer is
+				verplicht</div>
+			<!-- pensioenRegelingNaam -->
+
+			<!-- verwachteWaardePensioenResultaat -->
+
+			<div class="form-group">
+				<label for="verwachteWaardePensioenResultaat">VerwachteWaardePensioenResultaat
+					deelnemer</label> <input type="number"
+					[(ngModel)]="deelnemer.verwachteWaardePensioenResultaat"
+					class="form-control" id="verwachteWaardePensioenResultaat"
+					name="verwachteWaardePensioenResultaat"
+					placeholder="Invoer VerwachteWaardePensioenResultaat deelnemer"
+					required #verwachteWaardePensioenResultaat="ngModel"
+					readonly="readonly">
+			</div>
+
+			<div
+				*ngIf="verwachteWaardePensioenResultaat.invalid && (verwachteWaardePensioenResultaat.dirty || verwachteWaardePensioenResultaat.touched)"
+				class="alert alert-danger">VerwachteWaardePensioenResultaat
+				deelnemer is verplicht</div>
+			<!-- verwachteWaardePensioenResultaat -->
+
+			<!-- jaarlijksePremieStortingResultaat -->
+
+			<div class="form-group">
+				<label for="jaarlijksePremieStortingResultaat">JaarlijksePremieStortingResultaat
+					deelnemer</label> <input type="number"
+					[(ngModel)]="deelnemer.jaarlijksePremieStortingResultaat"
+					class="form-control" id="jaarlijksePremieStortingResultaat"
+					name="jaarlijksePremieStortingResultaat"
+					placeholder="Invoer JaarlijksePremieStortingResultaat deelnemer"
+					required #jaarlijksePremieStortingResultaat="ngModel"
+					readonly="readonly">
+			</div>
+
+
+			<!-- jaarlijksePremieStortingResultaat -->
+
+			<button type="submit" [disabled]="!deelnemerForm.form.valid"
+				class="btn btn-info">Submit</button>
+		</form>
+	</div>
+</div>
