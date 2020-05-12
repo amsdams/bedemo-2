@@ -30,3 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 bin
+src/main/webapp/node/node_modules

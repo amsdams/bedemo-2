@@ -82,9 +82,10 @@ public class DeelnemerServiceImpl implements DeelnemerService {
      *
      * @param id the id of the entity.
      */
-    @Override
+    /*@Override
     public void delete(Long id) {
         log.debug("Request to delete Deelnemer : {}", id);
         deelnemerRepository.deleteById(id);
     }
+    */
 }

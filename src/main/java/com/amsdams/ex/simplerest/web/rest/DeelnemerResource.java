@@ -1,8 +1,8 @@
 package com.amsdams.ex.simplerest.web.rest;
 
 import java.math.BigDecimal;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +35,7 @@ import com.amsdams.ex.simplerest.web.rest.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class DeelnemerResource {
 
 	private final Logger log = LoggerFactory.getLogger(DeelnemerResource.class);
@@ -72,7 +72,7 @@ public class DeelnemerResource {
 	 *         if the deelnemer has already an ID.
 	 * @throws URISyntaxException if the Location URI syntax is incorrect.
 	 */
-	@PostMapping("/deelnemers")
+	/*@PostMapping("/deelnemers")
 	public ResponseEntity<DeelnemerDTO> createDeelnemer(@Valid @RequestBody DeelnemerDTO deelnemerDTO)
 			throws URISyntaxException {
 		log.debug("REST request to save Deelnemer : {}", deelnemerDTO);
@@ -101,7 +101,7 @@ public class DeelnemerResource {
 				.headers(HeaderUtil.createEntityCreationAlert(applicationName, ENTITY_NAME, result.getId().toString()))
 				.body(result);
 	}
-
+*/
 	/**
 	 * {@code PUT  /deelnemers} : Updates an existing deelnemer.
 	 *
@@ -127,12 +127,24 @@ public class DeelnemerResource {
 					.findOne(deelnemerDTO.getPensioenRegelingId());
 			if (optionalPensioenRegelingDTO.isPresent()) {
 
-				BigDecimal jaarlijksePremieStortingResultaat = jaarlijksePremieStortingBerekeningService
-						.getJaarlijksePremieStorting(deelnemerDTO, optionalPensioenRegelingDTO.get());
+		
+				
+				BigDecimal deelnemerVoltijdsalaris = deelnemerDTO.getVoltijdsalaris();
+				BigDecimal pensioenRegelingVoltijdFranchise = optionalPensioenRegelingDTO.get().getVoltijdFranchise();
+				BigDecimal deelnemerDeeltijdPercentage = deelnemerDTO.getDeeltijdPercentage();
+				BigDecimal pensioenRegelingPremiePercentage = optionalPensioenRegelingDTO.get().getPremiePercentage();
+				
+				BigDecimal jaarlijksePremieStortingResultaat = jaarlijksePremieStortingBerekeningService.getJaarlijksePremieStorting(deelnemerVoltijdsalaris, pensioenRegelingVoltijdFranchise, deelnemerDeeltijdPercentage, pensioenRegelingPremiePercentage);
 				deelnemerDTO.setJaarlijksePremieStortingResultaat(jaarlijksePremieStortingResultaat);
 
-				BigDecimal verwachteWaardePensioenResultaat = verwachteWaardePensioenBerekeningService
-						.getVerwachteWaardePensioen(deelnemerDTO, optionalPensioenRegelingDTO.get());
+				LocalDate deelnemerStartdatumDienst = deelnemerDTO.getStartdatumDienst();
+				LocalDate deelnemerEinddatumDienst = deelnemerDTO.getEinddatumDienst();
+				BigDecimal deelnemerHuidigeWaardeBeleggingen = deelnemerDTO.getHuidigeWaardeBeleggingen();
+				BigDecimal deelnemerJaarlijksePremieStortingResultaat  = deelnemerDTO.getJaarlijksePremieStortingResultaat();
+				BigDecimal pensioenRegelingJaarlijksRendementBeleggingen = optionalPensioenRegelingDTO.get().getJaarlijksRendementBeleggingen();
+				
+				BigDecimal verwachteWaardePensioenResultaat = verwachteWaardePensioenBerekeningService.getVerwachteWaardePensioen(deelnemerStartdatumDienst, deelnemerEinddatumDienst, deelnemerHuidigeWaardeBeleggingen, deelnemerJaarlijksePremieStortingResultaat, pensioenRegelingJaarlijksRendementBeleggingen);
+
 				deelnemerDTO.setVerwachteWaardePensioenResultaat(verwachteWaardePensioenResultaat);
 			}
 		}
@@ -176,11 +188,12 @@ public class DeelnemerResource {
 	 * @param id the id of the deelnemerDTO to delete.
 	 * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
 	 */
-	@DeleteMapping("/deelnemers/{id}")
+	/*@DeleteMapping("/deelnemers/{id}")
 	public ResponseEntity<Void> deleteDeelnemer(@PathVariable Long id) {
 		log.debug("REST request to delete Deelnemer : {}", id);
 		deelnemerService.delete(id);
 		return ResponseEntity.noContent()
 				.headers(HeaderUtil.createEntityDeletionAlert(applicationName, ENTITY_NAME, id.toString())).build();
 	}
+	*/
 }

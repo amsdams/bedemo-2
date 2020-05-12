@@ -56,12 +56,6 @@ public class PensioenRegeling implements Serializable {
     @NotNull
     @DecimalMin(value = "0")
     @DecimalMax(value = "100")
-    @Column(name = "deeltijd_percentage", precision = 21, scale = 2, nullable = false)
-    private BigDecimal deeltijdPercentage;
-
-    @NotNull
-    @DecimalMin(value = "0")
-    @DecimalMax(value = "100")
     @Column(name = "jaarlijks_rendement_beleggingen", precision = 21, scale = 2, nullable = false)
     private BigDecimal jaarlijksRendementBeleggingen;
 
@@ -88,7 +82,6 @@ public class PensioenRegeling implements Serializable {
             ", naam='" + getNaam() + "'" +
             ", voltijdFranchise=" + getVoltijdFranchise() +
             ", premiePercentage=" + getPremiePercentage() +
-            ", deeltijdPercentage=" + getDeeltijdPercentage() +
             ", jaarlijksRendementBeleggingen=" + getJaarlijksRendementBeleggingen() +
             "}";
     }

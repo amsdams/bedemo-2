@@ -31,11 +31,6 @@ public class PensioenRegelingDTO implements Serializable {
     @NotNull
     @DecimalMin(value = "0")
     @DecimalMax(value = "100")
-    private BigDecimal deeltijdPercentage;
-
-    @NotNull
-    @DecimalMin(value = "0")
-    @DecimalMax(value = "100")
     private BigDecimal jaarlijksRendementBeleggingen;
 
 

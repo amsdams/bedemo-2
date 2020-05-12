@@ -2,7 +2,6 @@ package com.amsdams.ex.simplerest.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -51,8 +50,8 @@ public class PensioenRegelingResourceIT {
     private static final BigDecimal DEFAULT_PREMIE_PERCENTAGE = new BigDecimal(0);
     private static final BigDecimal UPDATED_PREMIE_PERCENTAGE = new BigDecimal(1);
 
-    private static final BigDecimal DEFAULT_DEELTIJD_PERCENTAGE = new BigDecimal(0);
-    private static final BigDecimal UPDATED_DEELTIJD_PERCENTAGE = new BigDecimal(1);
+    //private static final BigDecimal DEFAULT_DEELTIJD_PERCENTAGE = new BigDecimal(0);
+    //private static final BigDecimal UPDATED_DEELTIJD_PERCENTAGE = new BigDecimal(1);
 
     private static final BigDecimal DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN = new BigDecimal(0);
     private static final BigDecimal UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN = new BigDecimal(1);
@@ -108,7 +107,6 @@ public class PensioenRegelingResourceIT {
             .naam(DEFAULT_NAAM)
             .voltijdFranchise(DEFAULT_VOLTIJD_FRANCHISE)
             .premiePercentage(DEFAULT_PREMIE_PERCENTAGE)
-            .deeltijdPercentage(DEFAULT_DEELTIJD_PERCENTAGE)
             .jaarlijksRendementBeleggingen(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN).build();
         return pensioenRegeling;
     }
@@ -118,21 +116,20 @@ public class PensioenRegelingResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static PensioenRegeling createUpdatedEntity(EntityManager em) {
+    /*public static PensioenRegeling createUpdatedEntity(EntityManager em) {
         PensioenRegeling pensioenRegeling = PensioenRegeling.builder()
             .naam(UPDATED_NAAM)
             .voltijdFranchise(UPDATED_VOLTIJD_FRANCHISE)
             .premiePercentage(UPDATED_PREMIE_PERCENTAGE)
-            .deeltijdPercentage(UPDATED_DEELTIJD_PERCENTAGE)
             .jaarlijksRendementBeleggingen(UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN).build();
         return pensioenRegeling;
     }
-
+*/
     @BeforeEach
     public void initTest() {
         pensioenRegeling = createEntity(em);
     }
-
+/*
     @Test
     @Transactional
     public void createPensioenRegeling() throws Exception {
@@ -155,7 +152,9 @@ public class PensioenRegelingResourceIT {
         assertThat(testPensioenRegeling.getDeeltijdPercentage()).isEqualTo(DEFAULT_DEELTIJD_PERCENTAGE);
         assertThat(testPensioenRegeling.getJaarlijksRendementBeleggingen()).isEqualTo(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN);
     }
-
+*/
+    
+    /*
     @Test
     @Transactional
     public void createPensioenRegelingWithExistingId() throws Exception {
@@ -166,7 +165,7 @@ public class PensioenRegelingResourceIT {
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
             .andExpect(status().isBadRequest());
@@ -175,7 +174,7 @@ public class PensioenRegelingResourceIT {
         List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeCreate);
     }
-
+*/
 
     @Test
     @Transactional
@@ -187,7 +186,7 @@ public class PensioenRegelingResourceIT {
         // Create the PensioenRegeling, which fails.
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
 
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
             .andExpect(status().isBadRequest());
@@ -206,7 +205,7 @@ public class PensioenRegelingResourceIT {
         // Create the PensioenRegeling, which fails.
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
 
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
             .andExpect(status().isBadRequest());
@@ -215,6 +214,8 @@ public class PensioenRegelingResourceIT {
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeTest);
     }
 
+    
+ 
     @Test
     @Transactional
     public void checkPremiePercentageIsRequired() throws Exception {
@@ -225,7 +226,7 @@ public class PensioenRegelingResourceIT {
         // Create the PensioenRegeling, which fails.
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
 
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
             .andExpect(status().isBadRequest());
@@ -234,24 +235,7 @@ public class PensioenRegelingResourceIT {
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeTest);
     }
 
-    @Test
-    @Transactional
-    public void checkDeeltijdPercentageIsRequired() throws Exception {
-        int databaseSizeBeforeTest = pensioenRegelingRepository.findAll().size();
-        // set the field null
-        pensioenRegeling.setDeeltijdPercentage(null);
-
-        // Create the PensioenRegeling, which fails.
-        PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
-
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
-        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeTest);
-    }
+    
 
     @Test
     @Transactional
@@ -263,7 +247,7 @@ public class PensioenRegelingResourceIT {
         // Create the PensioenRegeling, which fails.
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
 
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
             .andExpect(status().isBadRequest());
@@ -286,7 +270,6 @@ public class PensioenRegelingResourceIT {
             .andExpect(jsonPath("$.[*].naam").value(hasItem(DEFAULT_NAAM)))
             .andExpect(jsonPath("$.[*].voltijdFranchise").value(hasItem(DEFAULT_VOLTIJD_FRANCHISE.intValue())))
             .andExpect(jsonPath("$.[*].premiePercentage").value(hasItem(DEFAULT_PREMIE_PERCENTAGE.intValue())))
-            .andExpect(jsonPath("$.[*].deeltijdPercentage").value(hasItem(DEFAULT_DEELTIJD_PERCENTAGE.intValue())))
             .andExpect(jsonPath("$.[*].jaarlijksRendementBeleggingen").value(hasItem(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN.intValue())));
     }
     
@@ -304,7 +287,6 @@ public class PensioenRegelingResourceIT {
             .andExpect(jsonPath("$.naam").value(DEFAULT_NAAM))
             .andExpect(jsonPath("$.voltijdFranchise").value(DEFAULT_VOLTIJD_FRANCHISE.intValue()))
             .andExpect(jsonPath("$.premiePercentage").value(DEFAULT_PREMIE_PERCENTAGE.intValue()))
-            .andExpect(jsonPath("$.deeltijdPercentage").value(DEFAULT_DEELTIJD_PERCENTAGE.intValue()))
             .andExpect(jsonPath("$.jaarlijksRendementBeleggingen").value(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN.intValue()));
     }
 
@@ -332,7 +314,6 @@ public class PensioenRegelingResourceIT {
             .naam(UPDATED_NAAM)
             .voltijdFranchise(UPDATED_VOLTIJD_FRANCHISE)
             .premiePercentage(UPDATED_PREMIE_PERCENTAGE)
-            .deeltijdPercentage(UPDATED_DEELTIJD_PERCENTAGE)
             .jaarlijksRendementBeleggingen(UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN).id(updatedPensioenRegeling.getId()).build();
         PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(updatedPensioenRegeling);
 
@@ -348,10 +329,11 @@ public class PensioenRegelingResourceIT {
         assertThat(testPensioenRegeling.getNaam()).isEqualTo(UPDATED_NAAM);
         assertThat(testPensioenRegeling.getVoltijdFranchise()).isEqualTo(UPDATED_VOLTIJD_FRANCHISE);
         assertThat(testPensioenRegeling.getPremiePercentage()).isEqualTo(UPDATED_PREMIE_PERCENTAGE);
-        assertThat(testPensioenRegeling.getDeeltijdPercentage()).isEqualTo(UPDATED_DEELTIJD_PERCENTAGE);
         assertThat(testPensioenRegeling.getJaarlijksRendementBeleggingen()).isEqualTo(UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN);
     }
 
+    
+  
     @Test
     @Transactional
     public void updateNonExistingPensioenRegeling() throws Exception {
@@ -371,6 +353,8 @@ public class PensioenRegelingResourceIT {
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeUpdate);
     }
 
+    
+    /*
     @Test
     @Transactional
     public void deletePensioenRegeling() throws Exception {
@@ -387,5 +371,76 @@ public class PensioenRegelingResourceIT {
         // Validate the database contains one less item
         List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeDelete - 1);
+    }
+    */
+    
+    @Test
+    @Transactional
+    public void updatePensioenRegelingScenario1() throws Exception {
+        // Initialize the database
+        pensioenRegelingRepository.saveAndFlush(pensioenRegeling);
+
+        int databaseSizeBeforeUpdate = pensioenRegelingRepository.findAll().size();
+
+        // Update the pensioenRegeling
+        PensioenRegeling updatedPensioenRegeling = pensioenRegelingRepository.findById(pensioenRegeling.getId()).get();
+        // Disconnect from session so that the updates on updatedPensioenRegeling are not directly saved in db
+        em.detach(updatedPensioenRegeling);
+        updatedPensioenRegeling = PensioenRegeling.builder()
+            .naam(UPDATED_NAAM)
+            .voltijdFranchise(new BigDecimal("13785"))
+            .premiePercentage(new BigDecimal("1.657"))
+            .jaarlijksRendementBeleggingen(new BigDecimal("3"))
+            .id(updatedPensioenRegeling.getId()).build();
+        PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(updatedPensioenRegeling);
+
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
+            .andExpect(status().isOk());
+
+        // Validate the PensioenRegeling in the database
+        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
+        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeUpdate);
+        PensioenRegeling testPensioenRegeling = pensioenRegelingList.get(pensioenRegelingList.size() - 1);
+        assertThat(testPensioenRegeling.getNaam()).isEqualTo(UPDATED_NAAM);
+        assertThat(testPensioenRegeling.getVoltijdFranchise()).isEqualTo(new BigDecimal("13785"));
+        assertThat(testPensioenRegeling.getPremiePercentage()).isEqualTo(new BigDecimal("1.657"));
+        assertThat(testPensioenRegeling.getJaarlijksRendementBeleggingen()).isEqualTo(new BigDecimal("3"));
+    }
+    
+    @Test
+    @Transactional
+    public void updatePensioenRegelingScenario2() throws Exception {
+        // Initialize the database
+        pensioenRegelingRepository.saveAndFlush(pensioenRegeling);
+
+        int databaseSizeBeforeUpdate = pensioenRegelingRepository.findAll().size();
+
+        // Update the pensioenRegeling
+        PensioenRegeling updatedPensioenRegeling = pensioenRegelingRepository.findById(pensioenRegeling.getId()).get();
+        // Disconnect from session so that the updates on updatedPensioenRegeling are not directly saved in db
+        em.detach(updatedPensioenRegeling);
+        updatedPensioenRegeling = PensioenRegeling.builder()
+            .naam(UPDATED_NAAM)
+            .voltijdFranchise(new BigDecimal("15599"))
+            .premiePercentage(new BigDecimal("5"))
+            .jaarlijksRendementBeleggingen(new BigDecimal("3"))
+            .id(updatedPensioenRegeling.getId()).build();
+        PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(updatedPensioenRegeling);
+
+        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
+            .andExpect(status().isOk());
+
+        // Validate the PensioenRegeling in the database
+        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
+        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeUpdate);
+        PensioenRegeling testPensioenRegeling = pensioenRegelingList.get(pensioenRegelingList.size() - 1);
+        assertThat(testPensioenRegeling.getNaam()).isEqualTo(UPDATED_NAAM);
+        assertThat(testPensioenRegeling.getVoltijdFranchise()).isEqualTo(new BigDecimal("15599"));
+        assertThat(testPensioenRegeling.getPremiePercentage()).isEqualTo(new BigDecimal("5"));
+        assertThat(testPensioenRegeling.getJaarlijksRendementBeleggingen()).isEqualTo(new BigDecimal("3"));
     }
 }

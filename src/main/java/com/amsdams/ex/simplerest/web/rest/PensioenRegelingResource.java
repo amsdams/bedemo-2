@@ -1,6 +1,5 @@
 package com.amsdams.ex.simplerest.web.rest;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +29,7 @@ import com.amsdams.ex.simplerest.web.rest.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class PensioenRegelingResource {
 
     private final Logger log = LoggerFactory.getLogger(PensioenRegelingResource.class);
@@ -53,7 +52,7 @@ public class PensioenRegelingResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pensioenRegelingDTO, or with status {@code 400 (Bad Request)} if the pensioenRegeling has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/pensioen-regelings")
+    /*@PostMapping("/pensioen-regelings")
     public ResponseEntity<PensioenRegelingDTO> createPensioenRegeling(@Valid @RequestBody PensioenRegelingDTO pensioenRegelingDTO) throws URISyntaxException {
         log.debug("REST request to save PensioenRegeling : {}", pensioenRegelingDTO);
         if (pensioenRegelingDTO.getId() != null) {
@@ -63,7 +62,7 @@ public class PensioenRegelingResource {
         return ResponseEntity.created(new URI("/api/pensioen-regelings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, ENTITY_NAME, result.getId().toString()))
             .body(result);
-    }
+    }*/
 
     /**
      * {@code PUT  /pensioen-regelings} : Updates an existing pensioenRegeling.
@@ -117,10 +116,11 @@ public class PensioenRegelingResource {
      * @param id the id of the pensioenRegelingDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/pensioen-regelings/{id}")
+    /*@DeleteMapping("/pensioen-regelings/{id}")
     public ResponseEntity<Void> deletePensioenRegeling(@PathVariable Long id) {
         log.debug("REST request to delete PensioenRegeling : {}", id);
         pensioenRegelingService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, ENTITY_NAME, id.toString())).build();
     }
+    */
 }
