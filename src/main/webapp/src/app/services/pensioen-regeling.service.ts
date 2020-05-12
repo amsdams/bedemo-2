@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PensioenRegelingDTO } from '../models/pensioen-regeling-dto';
-
+import { environment } from '../../environments/environment';
 @Injectable({
 	providedIn: 'root'
 })
 export class PensioenRegelingService {
 
+
 	private pensioenRegelingsUrl: string;
 
 	constructor(private http: HttpClient) {
-		this.pensioenRegelingsUrl = 'http://localhost:8080/api/pensioen-regelings';
+		this.pensioenRegelingsUrl = environment.baseUrl + '/pensioen-regelings';
 	}
 
 	public getAll(): Observable<PensioenRegelingDTO[]> {

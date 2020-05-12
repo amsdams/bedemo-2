@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { DeelnemerDTO } from '../models/deelnemer-dto';
 import { Observable } from 'rxjs/internal/Observable';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -11,7 +13,7 @@ export class DeelnemerService {
 	private deelnemersUrl: string;
 
 	constructor(private http: HttpClient) {
-		this.deelnemersUrl = 'http://localhost:8080/api/deelnemers';
+		this.deelnemersUrl = environment.baseUrl + '/deelnemers';
 	}
 
 	public getAll(): Observable<DeelnemerDTO[]> {
