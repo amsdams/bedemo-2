@@ -3,7 +3,6 @@ package com.amsdams.ex.simplerest.web.rest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -49,9 +48,6 @@ public class PensioenRegelingResourceIT {
 
     private static final BigDecimal DEFAULT_PREMIE_PERCENTAGE = new BigDecimal(0);
     private static final BigDecimal UPDATED_PREMIE_PERCENTAGE = new BigDecimal(1);
-
-    //private static final BigDecimal DEFAULT_DEELTIJD_PERCENTAGE = new BigDecimal(0);
-    //private static final BigDecimal UPDATED_DEELTIJD_PERCENTAGE = new BigDecimal(1);
 
     private static final BigDecimal DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN = new BigDecimal(0);
     private static final BigDecimal UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN = new BigDecimal(1);
@@ -110,71 +106,11 @@ public class PensioenRegelingResourceIT {
             .jaarlijksRendementBeleggingen(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN).build();
         return pensioenRegeling;
     }
-    /**
-     * Create an updated entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
-    /*public static PensioenRegeling createUpdatedEntity(EntityManager em) {
-        PensioenRegeling pensioenRegeling = PensioenRegeling.builder()
-            .naam(UPDATED_NAAM)
-            .voltijdFranchise(UPDATED_VOLTIJD_FRANCHISE)
-            .premiePercentage(UPDATED_PREMIE_PERCENTAGE)
-            .jaarlijksRendementBeleggingen(UPDATED_JAARLIJKS_RENDEMENT_BELEGGINGEN).build();
-        return pensioenRegeling;
-    }
-*/
+
     @BeforeEach
     public void initTest() {
         pensioenRegeling = createEntity(em);
     }
-/*
-    @Test
-    @Transactional
-    public void createPensioenRegeling() throws Exception {
-        int databaseSizeBeforeCreate = pensioenRegelingRepository.findAll().size();
-
-        // Create the PensioenRegeling
-        PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
-        restPensioenRegelingMockMvc.perform(post("/api/pensioen-regelings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
-            .andExpect(status().isCreated());
-
-        // Validate the PensioenRegeling in the database
-        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
-        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeCreate + 1);
-        PensioenRegeling testPensioenRegeling = pensioenRegelingList.get(pensioenRegelingList.size() - 1);
-        assertThat(testPensioenRegeling.getNaam()).isEqualTo(DEFAULT_NAAM);
-        assertThat(testPensioenRegeling.getVoltijdFranchise()).isEqualTo(DEFAULT_VOLTIJD_FRANCHISE);
-        assertThat(testPensioenRegeling.getPremiePercentage()).isEqualTo(DEFAULT_PREMIE_PERCENTAGE);
-        assertThat(testPensioenRegeling.getDeeltijdPercentage()).isEqualTo(DEFAULT_DEELTIJD_PERCENTAGE);
-        assertThat(testPensioenRegeling.getJaarlijksRendementBeleggingen()).isEqualTo(DEFAULT_JAARLIJKS_RENDEMENT_BELEGGINGEN);
-    }
-*/
-    
-    /*
-    @Test
-    @Transactional
-    public void createPensioenRegelingWithExistingId() throws Exception {
-        int databaseSizeBeforeCreate = pensioenRegelingRepository.findAll().size();
-
-        // Create the PensioenRegeling with an existing ID
-        pensioenRegeling.setId(1L);
-        PensioenRegelingDTO pensioenRegelingDTO = pensioenRegelingMapper.toDto(pensioenRegeling);
-
-        // An entity with an existing ID cannot be created, so this API call must fail
-        restPensioenRegelingMockMvc.perform(put("/api/pensioen-regelings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(pensioenRegelingDTO)))
-            .andExpect(status().isBadRequest());
-
-        // Validate the PensioenRegeling in the database
-        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
-        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeCreate);
-    }
-*/
 
     @Test
     @Transactional
@@ -353,26 +289,6 @@ public class PensioenRegelingResourceIT {
         assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeUpdate);
     }
 
-    
-    /*
-    @Test
-    @Transactional
-    public void deletePensioenRegeling() throws Exception {
-        // Initialize the database
-        pensioenRegelingRepository.saveAndFlush(pensioenRegeling);
-
-        int databaseSizeBeforeDelete = pensioenRegelingRepository.findAll().size();
-
-        // Delete the pensioenRegeling
-        restPensioenRegelingMockMvc.perform(delete("/api/pensioen-regelings/{id}", pensioenRegeling.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isNoContent());
-
-        // Validate the database contains one less item
-        List<PensioenRegeling> pensioenRegelingList = pensioenRegelingRepository.findAll();
-        assertThat(pensioenRegelingList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-    */
     
     @Test
     @Transactional

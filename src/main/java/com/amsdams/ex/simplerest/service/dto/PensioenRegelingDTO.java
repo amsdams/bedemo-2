@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * A DTO for the {@link com.amsdams.befrank.domain.PensioenRegeling} entity.
+ * A DTO for the {@link com.amsdams.ex.simplerest.domain.PensioenRegeling} entity.
  */
 @Data
 public class PensioenRegelingDTO implements Serializable {

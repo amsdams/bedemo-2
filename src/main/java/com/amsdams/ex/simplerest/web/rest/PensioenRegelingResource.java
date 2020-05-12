@@ -25,7 +25,7 @@ import com.amsdams.ex.simplerest.web.rest.util.HeaderUtil;
 import com.amsdams.ex.simplerest.web.rest.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link com.amsdams.befrank.domain.PensioenRegeling}.
+ * REST controller for managing {@link com.amsdams.ex.simplerest.domain.PensioenRegeling}.
  */
 @RestController
 @RequestMapping("/api")

@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.amsdams.ex.simplerest.service.dto.DeelnemerDTO;
 
 /**
- * Service Interface for managing {@link com.amsdams.befrank.domain.Deelnemer}.
+ * Service Interface for managing {@link com.amsdams.ex.simplerest.domain.Deelnemer}.
  */
 public interface DeelnemerService {
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * A DTO for the {@link com.amsdams.befrank.domain.Deelnemer} entity.
+ * A DTO for the {@link com.amsdams.ex.simplerest.domain.Deelnemer} entity.
  */
 @Data
 public class DeelnemerDTO implements Serializable {

@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.amsdams.ex.simplerest.service.dto.PensioenRegelingDTO;
 
 /**
- * Service Interface for managing {@link com.amsdams.befrank.domain.PensioenRegeling}.
+ * Service Interface for managing {@link com.amsdams.ex.simplerest.domain.PensioenRegeling}.
  */
 public interface PensioenRegelingService {
 

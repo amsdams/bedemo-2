@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.amsdams.ex.simplerest.Application;
-import com.amsdams.ex.simplerest.service.impl.JaarlijksePremieStortingBerekeningService;
 import com.amsdams.ex.simplerest.service.impl.VerwachteWaardePensioenBerekeningService;
 
 @SpringBootTest(classes = Application.class)

@@ -149,7 +149,6 @@ public class DeelnemerResourceIT {
 	 * they test an entity which requires the current entity.
 	 */
 	public static Deelnemer createEntity(EntityManager em) {
-		//@formatter:off
 		Deelnemer deelnemer = Deelnemer.builder()
 				.naam(DEFAULT_NAAM)
 				.adres(DEFAULT_ADRES)
@@ -162,28 +161,10 @@ public class DeelnemerResourceIT {
 				.huidigeWaardeBeleggingen(DEFAULT_HUIDIGE_WAARDE_BELEGGINGEN)
 				.rekening(DEFAULT_REKENING)
 				.deeltijdPercentage(DEFAULT_DEELTIJDPERCENTAGE).build();
-		//@formatter:on
 		return deelnemer;
 	}
 
-	/**
-	 * Create an updated entity for this test.
-	 *
-	 * This is a static method, as tests for other entities might also need it, if
-	 * they test an entity which requires the current entity.
-	 */
-	/*
-	 * public static Deelnemer createUpdatedEntity(EntityManager em) { Deelnemer
-	 * deelnemer = Deelnemer.builder() .naam(UPDATED_NAAM) .adres(UPDATED_ADRES)
-	 * .woonplaats(UPDATED_WOONPLAATS) .email(UPDATED_EMAIL)
-	 * .geboortedatum(UPDATED_GEBOORTEDATUM)
-	 * .einddatumDienst(UPDATED_EINDDATUM_DIENST)
-	 * .startdatumDienst(UPDATED_STARTDATUM_DIENST)
-	 * .voltijdsalaris(UPDATED_VOLTIJDSALARIS)
-	 * .huidigeWaardeBeleggingen(UPDATED_HUIDIGE_WAARDE_BELEGGINGEN)
-	 * .rekening(UPDATED_REKENING)
-	 * .deeltijdPercentage(UPDATED_DEELTIJDPERCENTAGE).build(); return deelnemer; }
-	 */
+	
 	@BeforeEach
 	public void initTest() {
 		deelnemer = createEntity(em);
@@ -194,15 +175,11 @@ public class DeelnemerResourceIT {
 	}
 
 	private PensioenRegeling createPensioenRegelingScenario1(EntityManager em2) {
-		// @formatter:off
 		PensioenRegeling pensioenRegeling = PensioenRegeling.builder()
 				.jaarlijksRendementBeleggingen(new BigDecimal("3"))
 				.naam("naam")
 				.premiePercentage(new BigDecimal("1.657"))
 				.voltijdFranchise(new BigDecimal("13785")).build();
- 
-		// @formatter:on
-
 		return pensioenRegeling;
 	}
 
@@ -225,20 +202,19 @@ public class DeelnemerResourceIT {
 	}
 
 	private PensioenRegeling createPensioenRegelingScenario2(EntityManager em2) {
-		// @formatter:off
 		PensioenRegeling pensioenRegeling = PensioenRegeling.builder()
 				.jaarlijksRendementBeleggingen(new BigDecimal("3"))
 				.naam("naam")
 				.premiePercentage(new BigDecimal("5"))
 				.voltijdFranchise(new BigDecimal("15599")).build();
  
-		// @formatter:on
+
 
 		return pensioenRegeling;
 	}
 
 	private Deelnemer createDeelnemerScenario2(EntityManager em2) {
-		// @formatter:off
+
 		Deelnemer deelnemer = Deelnemer.builder()
 				.naam(UPDATED_NAAM)
 				.adres(UPDATED_ADRES)
@@ -251,62 +227,10 @@ public class DeelnemerResourceIT {
 				.huidigeWaardeBeleggingen(new BigDecimal("100"))
 				.rekening(UPDATED_REKENING)
 				.deeltijdPercentage(new BigDecimal("100")).build();
-		// @formatter:on
+
 		return deelnemer;
 	}
 	
-	/*
-	 * @Test
-	 * 
-	 * @Transactional public void createDeelnemer() throws Exception { int
-	 * databaseSizeBeforeCreate = deelnemerRepository.findAll().size();
-	 * 
-	 * // Create the Deelnemer DeelnemerDTO deelnemerDTO =
-	 * deelnemerMapper.toDto(deelnemer);
-	 * restDeelnemerMockMvc.perform(post("/api/deelnemers")
-	 * .contentType(TestUtil.APPLICATION_JSON_UTF8)
-	 * .content(TestUtil.convertObjectToJsonBytes(deelnemerDTO))).andDo(print())
-	 * .andExpect(status().isCreated());
-	 * 
-	 * // Validate the Deelnemer in the database List<Deelnemer> deelnemerList =
-	 * deelnemerRepository.findAll();
-	 * assertThat(deelnemerList).hasSize(databaseSizeBeforeCreate + 1); Deelnemer
-	 * testDeelnemer = deelnemerList.get(deelnemerList.size() - 1);
-	 * assertThat(testDeelnemer.getNaam()).isEqualTo(DEFAULT_NAAM);
-	 * assertThat(testDeelnemer.getAdres()).isEqualTo(DEFAULT_ADRES);
-	 * assertThat(testDeelnemer.getWoonplaats()).isEqualTo(DEFAULT_WOONPLAATS);
-	 * assertThat(testDeelnemer.getEmail()).isEqualTo(DEFAULT_EMAIL);
-	 * assertThat(testDeelnemer.getGeboortedatum()).isEqualTo(DEFAULT_GEBOORTEDATUM)
-	 * ; assertThat(testDeelnemer.getEinddatumDienst()).isEqualTo(
-	 * DEFAULT_EINDDATUM_DIENST);
-	 * assertThat(testDeelnemer.getStartdatumDienst()).isEqualTo(
-	 * DEFAULT_STARTDATUM_DIENST);
-	 * assertThat(testDeelnemer.getVoltijdsalaris()).isEqualTo(
-	 * DEFAULT_VOLTIJDSALARIS);
-	 * assertThat(testDeelnemer.getHuidigeWaardeBeleggingen()).isEqualTo(
-	 * DEFAULT_HUIDIGE_WAARDE_BELEGGINGEN);
-	 * assertThat(testDeelnemer.getRekening()).isEqualTo(DEFAULT_REKENING); }
-	 */
-	/*
-	 * @Test
-	 * 
-	 * @Transactional public void createDeelnemerWithExistingId() throws Exception {
-	 * int databaseSizeBeforeCreate = deelnemerRepository.findAll().size();
-	 * 
-	 * // Create the Deelnemer with an existing ID deelnemer.setId(1L); DeelnemerDTO
-	 * deelnemerDTO = deelnemerMapper.toDto(deelnemer);
-	 * 
-	 * // An entity with an existing ID cannot be created, so this API call must
-	 * fail restDeelnemerMockMvc.perform(post("/api/deelnemers")
-	 * .contentType(TestUtil.APPLICATION_JSON_UTF8)
-	 * .content(TestUtil.convertObjectToJsonBytes(deelnemerDTO)))
-	 * .andExpect(status().isBadRequest());
-	 * 
-	 * // Validate the Deelnemer in the database List<Deelnemer> deelnemerList =
-	 * deelnemerRepository.findAll();
-	 * assertThat(deelnemerList).hasSize(databaseSizeBeforeCreate); }
-	 */
-
 	@Test
 	@Transactional
 	public void checkNaamIsRequired() throws Exception {
@@ -602,24 +526,6 @@ public class DeelnemerResourceIT {
 		List<Deelnemer> deelnemerList = deelnemerRepository.findAll();
 		assertThat(deelnemerList).hasSize(databaseSizeBeforeUpdate);
 	}
-
-	/*
-	 * @Test
-	 * 
-	 * @Transactional public void deleteDeelnemer() throws Exception { // Initialize
-	 * the database deelnemerRepository.saveAndFlush(deelnemer);
-	 * 
-	 * int databaseSizeBeforeDelete = deelnemerRepository.findAll().size();
-	 * 
-	 * // Delete the deelnemer
-	 * restDeelnemerMockMvc.perform(delete("/api/deelnemers/{id}",
-	 * deelnemer.getId()) .accept(TestUtil.APPLICATION_JSON_UTF8))
-	 * .andExpect(status().isNoContent());
-	 * 
-	 * // Validate the database contains one less item List<Deelnemer> deelnemerList
-	 * = deelnemerRepository.findAll();
-	 * assertThat(deelnemerList).hasSize(databaseSizeBeforeDelete - 1); }
-	 */
 
 	@Test
 	@Transactional

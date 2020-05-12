@@ -90,11 +90,17 @@ public class Deelnemer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Deelnemer{" + "id=" + getId() + ", naam='" + getNaam() + "'" + ", adres='" + getAdres() + "'"
-				+ ", woonplaats='" + getWoonplaats() + "'" + ", email='" + getEmail() + "'" + ", geboortedatum='"
-				+ getGeboortedatum() + "'" + ", einddatumDienst='" + getEinddatumDienst() + "'" + ", startdatumDienst='"
-				+ getStartdatumDienst() + "'" + ", voltijdsalaris=" + getVoltijdsalaris()
-				+ ", huidigeWaardeBeleggingen=" + getHuidigeWaardeBeleggingen() + ", rekening='" + getRekening() + "'"
+		return "Deelnemer{" + "id=" + getId() + 
+				", naam='" + getNaam() + "'" + 
+				", adres='" + getAdres() + "'"+ 
+				", woonplaats='" + getWoonplaats() + "'" + 
+				", email='" + getEmail() + "'" + 
+				", geboortedatum='"+ getGeboortedatum() + "'" + 
+				", einddatumDienst='" + getEinddatumDienst() + "'" + 
+				", startdatumDienst='"+ getStartdatumDienst() + "'" + 
+				", voltijdsalaris=" + getVoltijdsalaris()+ 
+				", huidigeWaardeBeleggingen=" + getHuidigeWaardeBeleggingen() + 
+				", rekening='" + getRekening() + "'"
 				+ "}";
 	}
 }
