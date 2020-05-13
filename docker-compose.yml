@@ -1,0 +1,36 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    network_mode: bridge
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+    - 5432
+    ports:
+      - 5432:5432
+    environment:
+         - POSTGRES_PASSWORD=mypass
+         - POSTGRES_USER=myuser
+         - POSTGRES_DB=simplerest2
+    restart: unless-stopped
+  simplerest-prod:
+    image: amsdams/simplerest-prod:latest
+    network_mode: bridge
+    container_name: simplerest-prod
+    environment:
+    - SPRING_PROFILES_ACTIVE=prod
+    - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/simplerest2
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    command: --spring.profiles.active=prod
+    depends_on:
+      - postgres
+    links:
+      - postgres
+volumes:
+  postgres-data:

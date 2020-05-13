@@ -5,7 +5,6 @@ import org.mapstruct.Mapping;
 
 import com.amsdams.ex.simplerest.domain.PensioenRegeling;
 import com.amsdams.ex.simplerest.service.dto.PensioenRegelingDTO;
-import com.amsdams.ex.simplerest.web.rest.EntityMapper;
 
 /**
  * Mapper for the entity {@link PensioenRegeling} and its DTO {@link PensioenRegelingDTO}.

@@ -1,4 +1,4 @@
-package com.amsdams.ex.simplerest.web.rest;
+package com.amsdams.ex.simplerest.service.mapper;
 
 import java.util.List;
 

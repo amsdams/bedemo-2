@@ -5,7 +5,6 @@ import org.mapstruct.Mapping;
 
 import com.amsdams.ex.simplerest.domain.Deelnemer;
 import com.amsdams.ex.simplerest.service.dto.DeelnemerDTO;
-import com.amsdams.ex.simplerest.web.rest.EntityMapper;
 
 /**
  * Mapper for the entity {@link Deelnemer} and its DTO {@link DeelnemerDTO}.
