@@ -160,13 +160,10 @@
 					[(ngModel)]="deelnemer.pensioenRegelingNaam" class="form-control"
 					id="pensioenRegelingNaam" name="pensioenRegelingNaam"
 					placeholder="Invoer PensioenRegelingNaam deelnemer" required
-					#pensioenRegelingNaam="ngModel">
+					#pensioenRegelingNaam="ngModel" readonly="readonly">
 			</div>
 
-			<div
-				*ngIf="pensioenRegelingNaam.invalid && (pensioenRegelingNaam.dirty || pensioenRegelingNaam.touched)"
-				class="alert alert-danger">PensioenRegelingNaam deelnemer is
-				verplicht</div>
+			
 			<!-- pensioenRegelingNaam -->
 
 			<!-- verwachteWaardePensioenResultaat -->
