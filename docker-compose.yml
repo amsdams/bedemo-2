@@ -14,7 +14,7 @@ services:
          - POSTGRES_PASSWORD=mypass
          - POSTGRES_USER=myuser
          - POSTGRES_DB=simplerest2
-    restart: unless-stopped
+    restart: always
   simplerest-prod:
     image: amsdams/simplerest-prod:latest
     network_mode: bridge
@@ -26,7 +26,7 @@ services:
       - 8080
     ports:
       - 8080:8080
-    restart: unless-stopped
+    restart: always
     command: --spring.profiles.active=prod
     depends_on:
       - postgres
