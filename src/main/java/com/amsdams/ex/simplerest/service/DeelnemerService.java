@@ -34,10 +34,4 @@ public interface DeelnemerService {
      */
     Optional<DeelnemerDTO> findOne(Long id);
 
-    /**
-     * Delete the "id" deelnemer.
-     *
-     * @param id the id of the entity.
-     */
-    //void delete(Long id);
 }

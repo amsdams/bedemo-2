@@ -45,24 +45,6 @@ public class PensioenRegelingResource {
         this.pensioenRegelingService = pensioenRegelingService;
     }
 
-    /**
-     * {@code POST  /pensioen-regelings} : Create a new pensioenRegeling.
-     *
-     * @param pensioenRegelingDTO the pensioenRegelingDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pensioenRegelingDTO, or with status {@code 400 (Bad Request)} if the pensioenRegeling has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    /*@PostMapping("/pensioen-regelings")
-    public ResponseEntity<PensioenRegelingDTO> createPensioenRegeling(@Valid @RequestBody PensioenRegelingDTO pensioenRegelingDTO) throws URISyntaxException {
-        log.debug("REST request to save PensioenRegeling : {}", pensioenRegelingDTO);
-        if (pensioenRegelingDTO.getId() != null) {
-            throw new BadRequestAlertException("A new pensioenRegeling cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        PensioenRegelingDTO result = pensioenRegelingService.save(pensioenRegelingDTO);
-        return ResponseEntity.created(new URI("/api/pensioen-regelings/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }*/
 
     /**
      * {@code PUT  /pensioen-regelings} : Updates an existing pensioenRegeling.
@@ -110,17 +92,5 @@ public class PensioenRegelingResource {
         return ResponseUtil.wrapOrNotFound(pensioenRegelingDTO);
     }
 
-    /**
-     * {@code DELETE  /pensioen-regelings/:id} : delete the "id" pensioenRegeling.
-     *
-     * @param id the id of the pensioenRegelingDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
-    /*@DeleteMapping("/pensioen-regelings/{id}")
-    public ResponseEntity<Void> deletePensioenRegeling(@PathVariable Long id) {
-        log.debug("REST request to delete PensioenRegeling : {}", id);
-        pensioenRegelingService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, ENTITY_NAME, id.toString())).build();
-    }
-    */
+    
 }

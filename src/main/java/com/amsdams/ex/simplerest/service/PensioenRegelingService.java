@@ -33,11 +33,4 @@ public interface PensioenRegelingService {
      * @return the entity.
      */
     Optional<PensioenRegelingDTO> findOne(Long id);
-
-    /**
-     * Delete the "id" pensioenRegeling.
-     *
-     * @param id the id of the entity.
-     */
-    //void delete(Long id);
 }

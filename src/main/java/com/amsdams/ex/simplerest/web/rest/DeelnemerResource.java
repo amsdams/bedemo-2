@@ -63,45 +63,7 @@ public class DeelnemerResource {
 		this.pensioenRegelingService = pensioenRegelingService;
 	}
 
-	/**
-	 * {@code POST  /deelnemers} : Create a new deelnemer.
-	 *
-	 * @param deelnemerDTO the deelnemerDTO to create.
-	 * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
-	 *         body the new deelnemerDTO, or with status {@code 400 (Bad Request)}
-	 *         if the deelnemer has already an ID.
-	 * @throws URISyntaxException if the Location URI syntax is incorrect.
-	 */
-	/*@PostMapping("/deelnemers")
-	public ResponseEntity<DeelnemerDTO> createDeelnemer(@Valid @RequestBody DeelnemerDTO deelnemerDTO)
-			throws URISyntaxException {
-		log.debug("REST request to save Deelnemer : {}", deelnemerDTO);
-		if (deelnemerDTO.getId() != null) {
-			throw new BadRequestAlertException("A new deelnemer cannot already have an ID", ENTITY_NAME, "idexists");
-		}
-
-		if (deelnemerDTO.getPensioenRegelingId() != null) {
-
-			Optional<PensioenRegelingDTO> optionalPensioenRegelingDTO = pensioenRegelingService
-					.findOne(deelnemerDTO.getPensioenRegelingId());
-			if (optionalPensioenRegelingDTO.isPresent()) {
-
-				BigDecimal jaarlijksePremieStortingResultaat = jaarlijksePremieStortingBerekeningService
-						.getJaarlijksePremieStorting(deelnemerDTO, optionalPensioenRegelingDTO.get());
-				deelnemerDTO.setJaarlijksePremieStortingResultaat(jaarlijksePremieStortingResultaat);
-
-				BigDecimal verwachteWaardePensioenResultaat = verwachteWaardePensioenBerekeningService
-						.getVerwachteWaardePensioen(deelnemerDTO, optionalPensioenRegelingDTO.get());
-				deelnemerDTO.setVerwachteWaardePensioenResultaat(verwachteWaardePensioenResultaat);
-			}
-		}
-
-		DeelnemerDTO result = deelnemerService.save(deelnemerDTO);
-		return ResponseEntity.created(new URI("/api/deelnemers/" + result.getId()))
-				.headers(HeaderUtil.createEntityCreationAlert(applicationName, ENTITY_NAME, result.getId().toString()))
-				.body(result);
-	}
-*/
+	
 	/**
 	 * {@code PUT  /deelnemers} : Updates an existing deelnemer.
 	 *
@@ -182,18 +144,5 @@ public class DeelnemerResource {
 		return ResponseUtil.wrapOrNotFound(deelnemerDTO);
 	}
 
-	/**
-	 * {@code DELETE  /deelnemers/:id} : delete the "id" deelnemer.
-	 *
-	 * @param id the id of the deelnemerDTO to delete.
-	 * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-	 */
-	/*@DeleteMapping("/deelnemers/{id}")
-	public ResponseEntity<Void> deleteDeelnemer(@PathVariable Long id) {
-		log.debug("REST request to delete Deelnemer : {}", id);
-		deelnemerService.delete(id);
-		return ResponseEntity.noContent()
-				.headers(HeaderUtil.createEntityDeletionAlert(applicationName, ENTITY_NAME, id.toString())).build();
-	}
-	*/
+	
 }
